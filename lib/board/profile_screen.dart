@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'changepass.dart';
 import '../providers/auth.dart';
 
 class EssentialsScreen extends StatelessWidget {
@@ -152,14 +152,39 @@ class EssentialsScreen extends StatelessWidget {
                     color: Color(0xff3284ff),
                     textColor: Colors.white,
                     child: Text(
+                      'CHANGE PASSWORD',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'SFProTextSemiMed',
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=> ChangePass(),),);
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: 40,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: RaisedButton(
+                    color: Color(0xff3284ff),
+                    textColor: Colors.white,
+                    child: Text(
                       'LOGOUT',
                       style: TextStyle(
                         fontSize: 14,
                         fontFamily: 'SFProTextSemiMed',
                       ),
                     ),
-                    onPressed: () async {
+                    onPressed: () async{
                       await Provider.of<Auth>(context, listen: false).logout();
+                      
                     },
                   ),
                 ),

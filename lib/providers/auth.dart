@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import './http_exception.dart';
 
@@ -49,6 +50,11 @@ class Auth with ChangeNotifier {
 
   Future<void> login(String email, String password) async {
     String url = 'https://api-devsoc.herokuapp.com/token/login';
+     final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
+      _register() {
+        _firebaseMessaging.getToken().then((token) => print('Token for Device : '+token));
+      }
     try {
       final response = await http.post(url, body: {
         'username': email,
@@ -69,6 +75,7 @@ class Auth with ChangeNotifier {
           'name': _name,
         });
         prefs.setString('userData', data);
+        _register();
         getTeams();
         notifyListeners();
       } else {
@@ -111,6 +118,36 @@ class Auth with ChangeNotifier {
 
   Future<void> evaluate() async {}
 
+  Future<void> changePass(String currentPass, String newPass, String newConfirmPass) async{
+    print('checkpointttttt');
+    String url = 'http://api-devsoc.herokuapp.com/auth/users/set_password/';
+    try {
+      final response = await http.post(url, 
+      headers: {'Authorization': _token},
+      body: {
+        'current_password': currentPass,
+        'new_password': newPass,
+        're_new_password':newConfirmPass
+      });
+      print(response.body);
+      // final responseBody = json.decode(response.body);
+      print(response.statusCode);
+     
+
+      if (response.statusCode == 204) {
+        print('OK');
+        notifyListeners();
+      } 
+      else {
+        throw HttpException('Unable to change password with provided credentials.');
+      }
+    } on HttpException catch (e) {
+      throw e;
+    }
+
+
+  }
+
   Future<void> logout() async {
     print(1);
     String url = 'http://api-devsoc.herokuapp.com/auth//token/logout/';
@@ -124,4 +161,45 @@ class Auth with ChangeNotifier {
     _name = null;
     notifyListeners();
   }
+
+
+
+
+
+  Future<void> message(bool messageCon, String messageHead, String messageBody) async{
+    print('checkpointttttt');
+    String url = 'https://api-devsoc.herokuapp.com/message/';
+    String messageConf = 'False';
+    if (messageCon==true){
+        messageConf='True';
+        }
+        else{
+        messageConf='False';
+        }
+    try {
+      final response = await http.post(url, 
+      headers: {'Authorization': _token},
+      body: {
+        'message_conf':messageConf,
+        'message_heading': messageHead,
+        'message_body':messageBody
+      });
+      print(response.body);
+      // final responseBody = json.decode(response.body);
+      print(response.statusCode);
+      if (response.statusCode == 204) {
+        print('OK');
+        notifyListeners();
+      } 
+      else {
+        throw HttpException('Unable to change password with provided credentials.');
+      }
+    } on HttpException catch (e) {
+      throw e;
+    }
+
+
+  }
 }
+
+

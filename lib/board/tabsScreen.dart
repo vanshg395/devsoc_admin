@@ -6,7 +6,7 @@ import './timeline_screen.dart';
 import './about_us_screen.dart';
 import './evaluation_screen.dart';
 import './profile_screen.dart';
-
+import './message.dart';
 class BoardScreen extends StatefulWidget {
   @override
   _BoardScreenState createState() => _BoardScreenState();
@@ -32,7 +32,7 @@ class _BoardScreenState extends State<BoardScreen> {
         'title': 'About Us',
       },
       {
-        'page': EssentialsScreen(),
+        'page': Message(),
         'title': 'Essentials',
       },
     ];
