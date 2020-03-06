@@ -91,7 +91,7 @@ class EssentialsScreen extends StatelessWidget {
                       ),
                     ),
                     title: Text(
-                      Provider.of<Auth>(context, listen: false).name,
+                      Provider.of<Auth>(context, listen: false).name ?? '',
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: 'SFProTextSemiMed',
