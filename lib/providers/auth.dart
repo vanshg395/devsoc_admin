@@ -33,7 +33,7 @@ class Auth with ChangeNotifier {
     return _token;
   }
 
-  String get token1{
+  String get token1 {
     return _token1;
   }
 
@@ -53,14 +53,15 @@ class Auth with ChangeNotifier {
     return _name;
   }
 
+  Future<void> _register() async {
+    final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+    final token1 = await _firebaseMessaging.getToken();
+    sendReg(token1);
+  }
+
   Future<void> login(String email, String password) async {
     String url = 'https://api-devsoc.herokuapp.com/token/login';
-     final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
-      _register() {
-        _firebaseMessaging.getToken().then((token1) => print('Token for Device : '+token1));
-        send_reg(token1);
-      }
     try {
       final response = await http.post(url, body: {
         'username': email,
@@ -104,6 +105,7 @@ class Auth with ChangeNotifier {
     _userType = extractedUserData['userType'];
     _username = extractedUserData['username'];
     _name = extractedUserData['name'];
+    await _register();
     getTeams();
     notifyListeners();
     return true;
@@ -124,61 +126,54 @@ class Auth with ChangeNotifier {
 
   Future<void> evaluate() async {}
 
-  Future<void> send_reg(String deviceId) async{
+  Future<void> sendReg(String deviceId) async {
     String url = 'http://api-devsoc.herokuapp.com/register/';
     try {
-      final response = await http.post(url, 
-      headers: {'Authorization': _token},
-      body: {
-        'device_id': deviceId,
-      });
+      final response = await http.post(url,
+          headers: {'Authorization': _token}, body: {'device_id': deviceId});
       print(response.body);
       // final responseBody = json.decode(response.body);
       print(response.statusCode);
-     
 
       if (response.statusCode == 204) {
         print('OK');
         notifyListeners();
-      } 
-      else {
-        throw HttpException('Unable to change password with provided credentials.');
+      } else {
+        throw HttpException(
+            'Unable to change password with provided credentials.');
       }
     } on HttpException catch (e) {
-      throw e;
+      // throw e;
+      print(e.toString());
     }
-
   }
 
-
-  Future<void> changePass(String currentPass, String newPass, String newConfirmPass) async{
+  Future<void> changePass(
+      String currentPass, String newPass, String newConfirmPass) async {
     print('checkpointttttt');
     String url = 'http://api-devsoc.herokuapp.com/auth/users/set_password/';
     try {
-      final response = await http.post(url, 
-      headers: {'Authorization': _token},
-      body: {
+      final response = await http.post(url, headers: {
+        'Authorization': _token
+      }, body: {
         'current_password': currentPass,
         'new_password': newPass,
-        're_new_password':newConfirmPass
+        're_new_password': newConfirmPass
       });
       print(response.body);
       // final responseBody = json.decode(response.body);
       print(response.statusCode);
-     
 
       if (response.statusCode == 204) {
         print('OK');
         notifyListeners();
-      } 
-      else {
-        throw HttpException('Unable to change password with provided credentials.');
+      } else {
+        throw HttpException(
+            'Unable to change password with provided credentials.');
       }
     } on HttpException catch (e) {
       throw e;
     }
-
-
   }
 
   Future<void> logout() async {
@@ -195,28 +190,24 @@ class Auth with ChangeNotifier {
     notifyListeners();
   }
 
-
-
-
-
-  Future<void> message(bool messageCon, String messageHead, String messageBody,String teamNumber) async{
+  Future<void> message(bool messageCon, String messageHead, String messageBody,
+      String teamNumber) async {
     print('checkpointttttt');
     String url = 'https://api-devsoc.herokuapp.com/message/';
     String messageConf = 'False';
-    if (messageCon==true){
-        messageConf='True';
-        }
-        else{
-        messageConf='False';
-        }
+    if (messageCon == true) {
+      messageConf = 'True';
+    } else {
+      messageConf = 'False';
+    }
     try {
-      final response = await http.post(url, 
-      headers: {'Authorization': _token},
-      body: {
-        'message_conf':messageConf,
+      final response = await http.post(url, headers: {
+        'Authorization': _token
+      }, body: {
+        'message_conf': messageConf,
         'message_heading': messageHead,
-        'message_body':messageBody,
-        'team':teamNumber
+        'message_body': messageBody,
+        'team': teamNumber
       });
       print(response.body);
       // final responseBody = json.decode(response.body);
@@ -224,16 +215,12 @@ class Auth with ChangeNotifier {
       if (response.statusCode == 201) {
         print('OK');
         notifyListeners();
-      } 
-      else {
-        throw HttpException('Unable to change password with provided credentials.');
+      } else {
+        throw HttpException(
+            'Unable to change password with provided credentials.');
       }
     } on HttpException catch (e) {
       throw e;
     }
-
-
   }
 }
-
-
