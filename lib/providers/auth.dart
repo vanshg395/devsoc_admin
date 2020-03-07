@@ -166,7 +166,7 @@ class Auth with ChangeNotifier {
 
 
 
-  Future<void> message(bool messageCon, String messageHead, String messageBody) async{
+  Future<void> message(bool messageCon, String messageHead, String messageBody,int teamNumber) async{
     print('checkpointttttt');
     String url = 'https://api-devsoc.herokuapp.com/message/';
     String messageConf = 'False';
@@ -182,7 +182,8 @@ class Auth with ChangeNotifier {
       body: {
         'message_conf':messageConf,
         'message_heading': messageHead,
-        'message_body':messageBody
+        'message_body':messageBody,
+        'team':teamNumber
       });
       print(response.body);
       // final responseBody = json.decode(response.body);

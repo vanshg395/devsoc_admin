@@ -33,7 +33,11 @@ class _BoardScreenState extends State<BoardScreen> {
       },
       {
         'page': Message(),
-        'title': 'Essentials',
+        'title': 'Messages',
+      },
+      {
+        'page': EssentialsScreen(),
+        'title': 'Profile',
       },
     ];
     super.initState();
@@ -94,6 +98,19 @@ class _BoardScreenState extends State<BoardScreen> {
             ),
             activeIcon: SvgPicture.asset(
               'assets/img/icons/support.svg',
+              height: 23,
+              color: Color(0xff3284ff),
+            ),
+            title: SizedBox(),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              'assets/img/icons/message.svg',
+              height: 23,
+              color: Colors.grey,
+            ),
+            activeIcon: SvgPicture.asset(
+              'assets/img/icons/message.svg',
               height: 23,
               color: Color(0xff3284ff),
             ),

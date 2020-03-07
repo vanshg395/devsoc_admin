@@ -15,6 +15,8 @@ class _MessageState extends State<Message> {
 
   TextEditingController _messageHeadController = TextEditingController();
   TextEditingController _messageBodyController = TextEditingController();
+  TextEditingController _teamNumberController = TextEditingController();
+  
 
   bool visisblePassword = false;
   bool _isLoading = false;
@@ -22,9 +24,8 @@ class _MessageState extends State<Message> {
   Map<String, String> _authData = {
     'messageHead': '',
     'messageBody': '',
-
   };
-
+  int teamNumber1;
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   String errorMessage = '';
@@ -33,13 +34,14 @@ class _MessageState extends State<Message> {
     print('Checkpoint 1');
     final messageHead = _authData['messageHead'];
     final messageBody = _authData['messageBody'];
+    final int teamNumber = teamNumber1;
     print(messageBody);
     setState(() {
       _isLoading = true;
     });
     try {
       print(_authData);
-      await Provider.of<Auth>(context, listen: false).message(isSwitched,messageHead,messageBody);
+      await Provider.of<Auth>(context, listen: false).message(isSwitched,messageHead,messageBody,teamNumber);
       Navigator.push(context,MaterialPageRoute(builder: (context)=> BoardScreen(),),);
     } catch (error) {
       errorMessage = error.toString();
@@ -53,7 +55,7 @@ class _MessageState extends State<Message> {
         context: context,
         builder: (context) => Platform.isIOS
             ? CupertinoAlertDialog(
-                title: Text('Authentication Error'),
+                title: Text('Error in sending message'),
                 content: Padding(
                   padding: EdgeInsets.only(top: 10),
                   child: Text(errorMessage),
@@ -67,7 +69,7 @@ class _MessageState extends State<Message> {
               )
             : AlertDialog(
                 backgroundColor: Colors.grey,
-                title: Text('Authentication Error'),
+                title: Text('Error in sending message'),
                 content: Padding(
                   padding: EdgeInsets.only(top: 10),
                   child: Text(errorMessage),
@@ -178,6 +180,35 @@ class _MessageState extends State<Message> {
               
               
               onChanged: (value) => _authData['messageBody'] = value,
+              
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.number,
+                controller: _teamNumberController,
+                decoration: InputDecoration(
+                
+                labelText: 'Team Number',
+                labelStyle: TextStyle(color: Colors.white),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+              ),
+              keyboardAppearance: Brightness.light,
+              
+              
+              onChanged: (value) => teamNumber1 = int.parse(value),
               
               ),
               
