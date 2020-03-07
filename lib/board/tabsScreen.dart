@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
-
+import './evaluation.dart';
 import './timeline_screen.dart';
 import './about_us_screen.dart';
 import './evaluation_screen.dart';
@@ -32,7 +32,7 @@ class _BoardScreenState extends State<BoardScreen> {
         'title': 'About Us',
       },
       {
-        'page': Message(),
+        'page': EvavluationPage(),
         'title': 'Messages',
       },
       {

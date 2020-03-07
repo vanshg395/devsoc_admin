@@ -124,7 +124,9 @@ class Auth with ChangeNotifier {
     }
   }
 
-  Future<void> evaluate() async {}
+  Future<void> evaluate(String techImplementation, String ideaFesability, String marketicStrategy, String bussinessModel,String remarks,String suggestions,double _techImplementation,double _bussinessModel,double _marketicStrategy,double _ideaFeasability,double _implementationTillNow) async {
+
+  }
 
   Future<void> sendReg(String deviceId) async {
     String url = 'http://api-devsoc.herokuapp.com/register/';
