@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:wasm';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -13,7 +14,7 @@ class Auth with ChangeNotifier {
   dynamic _teams;
   String _username;
   String _name;
-
+  String _token1;
   int get userType {
     if ((_userType == 'Core-2nd Year') || (_userType == 'Board')) {
       return 2;
@@ -30,6 +31,10 @@ class Auth with ChangeNotifier {
 
   String get token {
     return _token;
+  }
+
+  String get token1{
+    return _token1;
   }
 
   bool get isAuth {
@@ -53,7 +58,8 @@ class Auth with ChangeNotifier {
      final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
       _register() {
-        _firebaseMessaging.getToken().then((token) => print('Token for Device : '+token));
+        _firebaseMessaging.getToken().then((token1) => print('Token for Device : '+token1));
+        send_reg(token1);
       }
     try {
       final response = await http.post(url, body: {
@@ -117,6 +123,33 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> evaluate() async {}
+
+  Future<void> send_reg(String deviceId) async{
+    String url = 'http://api-devsoc.herokuapp.com/register/';
+    try {
+      final response = await http.post(url, 
+      headers: {'Authorization': _token},
+      body: {
+        'device_id': deviceId,
+      });
+      print(response.body);
+      // final responseBody = json.decode(response.body);
+      print(response.statusCode);
+     
+
+      if (response.statusCode == 204) {
+        print('OK');
+        notifyListeners();
+      } 
+      else {
+        throw HttpException('Unable to change password with provided credentials.');
+      }
+    } on HttpException catch (e) {
+      throw e;
+    }
+
+  }
+
 
   Future<void> changePass(String currentPass, String newPass, String newConfirmPass) async{
     print('checkpointttttt');
