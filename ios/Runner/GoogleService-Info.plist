@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>667031343962-9m5i44oat6fkprsoiid6ictqsor7okqq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.667031343962-9m5i44oat6fkprsoiid6ictqsor7okqq</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>667031343962-1f0lhvatpslp3ujsa9bonsupg46jm6s7.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDwevnDTpMSAl_hXpd515OWLeiUN4EwPVs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>667031343962</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>fippi.codechefvit.devsocAdmin</string>
+	<key>PROJECT_ID</key>
+	<string>codechef-b06be</string>
+	<key>STORAGE_BUCKET</key>
+	<string>codechef-b06be.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:667031343962:ios:5ea41590fe83c344989963</string>
+	<key>DATABASE_URL</key>
+	<string>https://codechef-b06be.firebaseio.com</string>
+</dict>
+</plist>
