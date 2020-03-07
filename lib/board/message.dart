@@ -25,7 +25,7 @@ class _MessageState extends State<Message> {
     'messageHead': '',
     'messageBody': '',
   };
-  int teamNumber1;
+  String teamNumber1;
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   String errorMessage = '';
@@ -34,7 +34,7 @@ class _MessageState extends State<Message> {
     print('Checkpoint 1');
     final messageHead = _authData['messageHead'];
     final messageBody = _authData['messageBody'];
-    final int teamNumber = teamNumber1;
+    final teamNumber = teamNumber1;
     print(messageBody);
     setState(() {
       _isLoading = true;
@@ -208,7 +208,7 @@ class _MessageState extends State<Message> {
               keyboardAppearance: Brightness.light,
               
               
-              onChanged: (value) => teamNumber1 = int.parse(value),
+              onChanged: (value) => teamNumber1 = value,
               
               ),
               

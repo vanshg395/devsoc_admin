@@ -166,7 +166,7 @@ class Auth with ChangeNotifier {
 
 
 
-  Future<void> message(bool messageCon, String messageHead, String messageBody,int teamNumber) async{
+  Future<void> message(bool messageCon, String messageHead, String messageBody,String teamNumber) async{
     print('checkpointttttt');
     String url = 'https://api-devsoc.herokuapp.com/message/';
     String messageConf = 'False';
@@ -188,7 +188,7 @@ class Auth with ChangeNotifier {
       print(response.body);
       // final responseBody = json.decode(response.body);
       print(response.statusCode);
-      if (response.statusCode == 204) {
+      if (response.statusCode == 201) {
         print('OK');
         notifyListeners();
       } 
