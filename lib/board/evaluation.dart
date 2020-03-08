@@ -6,18 +6,17 @@ import 'tabsScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:io';
 
-
 class EvavluationPage extends StatefulWidget {
   @override
   _EvavluationPageState createState() => _EvavluationPageState();
 }
 
 class _EvavluationPageState extends State<EvavluationPage> {
-  double _techImplementation = 0;
-  double _bussinessModel = 0;
-  double _marketicStrategy=0;
-  double _ideaFeasability = 0;
-  double _implementationTillNow = 0;
+  double _techImplementation = 5;
+  double _bussinessModel = 5;
+  double _marketicStrategy = 5;
+  double _ideaFeasability = 5;
+  double _implementationTillNow = 5;
   bool _isLoading = false;
   TextEditingController _techImpController = TextEditingController();
   TextEditingController _ideaFesController = TextEditingController();
@@ -25,24 +24,19 @@ class _EvavluationPageState extends State<EvavluationPage> {
   TextEditingController _bussinessModelController = TextEditingController();
   TextEditingController _remarksController = TextEditingController();
   TextEditingController _suggestionsController = TextEditingController();
-  
-
 
   Map<String, String> _evalData = {
     'techImplementation': '',
     'ideaFesability': '',
-    'marketicStrategy':'',
-    'bussinessModel':'',
-    'remarks':'',
-    'suggestions':''
+    'marketicStrategy': '',
+    'bussinessModel': '',
+    'remarks': '',
+    'suggestions': ''
   };
   final GlobalKey<FormState> _formKey = GlobalKey();
   String errorMessage = '';
 
-
-
   Future<void> _submit() async {
-   
     print('Checkpoint 1');
     final techImplementation = _evalData['techImplementation'];
     final ideaFesability = _evalData['ideaFesability'];
@@ -52,7 +46,7 @@ class _EvavluationPageState extends State<EvavluationPage> {
     final suggestions = _evalData['suggestions'];
     final _techImplementation1 = _techImplementation;
     final _bussinessModel1 = _bussinessModel;
-    final _marketicStrategy1=_marketicStrategy;
+    final _marketicStrategy1 = _marketicStrategy;
     final _ideaFeasability1 = _ideaFeasability;
     final _implementationTillNow1 = _implementationTillNow;
     setState(() {
@@ -60,8 +54,18 @@ class _EvavluationPageState extends State<EvavluationPage> {
     });
     try {
       print(_evalData);
-      await Provider.of<Auth>(context, listen: false)
-          .evaluate(techImplementation, ideaFesability, marketicStrategy, bussinessModel,remarks,suggestions,_techImplementation1,_bussinessModel1,_marketicStrategy1,_ideaFeasability1,_implementationTillNow1);
+      await Provider.of<Auth>(context, listen: false).evaluate(
+          techImplementation,
+          ideaFesability,
+          marketicStrategy,
+          bussinessModel,
+          remarks,
+          suggestions,
+          _techImplementation1,
+          _bussinessModel1,
+          _marketicStrategy1,
+          _ideaFeasability1,
+          _implementationTillNow1);
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -73,12 +77,11 @@ class _EvavluationPageState extends State<EvavluationPage> {
       print(errorMessage);
       setState(() {
         _techImpController.text = '';
-        _ideaFesController.text ='';
+        _ideaFesController.text = '';
         _marketicStrController.text = '';
         _bussinessModelController.text = '';
         _remarksController.text = '';
         _suggestionsController.text = '';
-  
       });
       showDialog(
         context: context,
@@ -117,15 +120,16 @@ class _EvavluationPageState extends State<EvavluationPage> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF030D18),
       body: SafeArea(
-        child:Container(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(15,0,15,0),
+          child: Container(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+          child: Form(
+            key: _formKey,
             child: ListView(
               children: <Widget>[
                 Padding(
@@ -158,18 +162,18 @@ class _EvavluationPageState extends State<EvavluationPage> {
                   max: 10,
                   divisions: 20,
                   label: _techImplementation.toString(),
-              ),
-              
+                ),
+
                 Container(
                   alignment: Alignment(1.0, 0.0),
                   padding: EdgeInsets.only(top: 10.0, left: 20.0),
-                    child: Text(
-                      'Tech Implementation Level ( 10 for best )',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat'),
-                    ),
+                  child: Text(
+                    'Tech Implementation Level ( 10 for best )',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat'),
+                  ),
                 ),
                 SizedBox(
                   height: 20,
@@ -180,29 +184,27 @@ class _EvavluationPageState extends State<EvavluationPage> {
                   minLines: 1,
                   controller: _techImpController,
                   decoration: InputDecoration(
-                  
-                  labelText: 'Tech Implementation',
-                  labelStyle: TextStyle(color: Colors.white),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    labelText: 'Tech Implementation',
+                    labelStyle: TextStyle(color: Colors.white),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
                   ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
+                  keyboardAppearance: Brightness.light,
+                  onChanged: (value) => _evalData['techImplementation'] = value,
                 ),
-                keyboardAppearance: Brightness.light,
-                
-                
-                onChanged: (value) => _evalData['techImplementation'] = value,
+                SizedBox(
+                  height: 40,
                 ),
-                SizedBox(height: 40,),
-
 
                 // idea feasbility
                 Slider.adaptive(
@@ -217,18 +219,18 @@ class _EvavluationPageState extends State<EvavluationPage> {
                   max: 10,
                   divisions: 20,
                   label: _ideaFeasability.toString(),
-              ),
-              
+                ),
+
                 Container(
                   alignment: Alignment(1.0, 0.0),
                   padding: EdgeInsets.only(top: 10.0, left: 20.0),
-                    child: Text(
-                      'Idea Fesability Level ( 10 for best )',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat'),
-                    ),
+                  child: Text(
+                    'Idea Fesability Level ( 10 for best )',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat'),
+                  ),
                 ),
                 SizedBox(
                   height: 20,
@@ -239,29 +241,27 @@ class _EvavluationPageState extends State<EvavluationPage> {
                   minLines: 1,
                   controller: _ideaFesController,
                   decoration: InputDecoration(
-                  
-                  labelText: 'Idea Fesability',
-                  labelStyle: TextStyle(color: Colors.white),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    labelText: 'Idea Fesability',
+                    labelStyle: TextStyle(color: Colors.white),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
                   ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
+                  keyboardAppearance: Brightness.light,
+                  onChanged: (value) => _evalData['ideaFesability'] = value,
                 ),
-                keyboardAppearance: Brightness.light,
-                
-                
-                onChanged: (value) => _evalData['ideaFesability'] = value,
+                SizedBox(
+                  height: 40,
                 ),
-                SizedBox(height: 40,),
-
 
                 // impleementation till now
                 Slider.adaptive(
@@ -276,25 +276,21 @@ class _EvavluationPageState extends State<EvavluationPage> {
                   max: 10,
                   divisions: 20,
                   label: _implementationTillNow.toString(),
-              ),
-              Container(
+                ),
+                Container(
                   alignment: Alignment(1.0, 0.0),
                   padding: EdgeInsets.only(top: 10.0, left: 20.0),
-                    child: Text(
-                      'Implementation Till Now ( 10 for best )',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat'),
-                    ),
+                  child: Text(
+                    'Implementation Till Now ( 10 for best )',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat'),
+                  ),
                 ),
                 SizedBox(
                   height: 30,
                 ),
-
-
-
-
 
                 // Marketic Strategy
                 Slider.adaptive(
@@ -309,18 +305,18 @@ class _EvavluationPageState extends State<EvavluationPage> {
                   max: 10,
                   divisions: 20,
                   label: _marketicStrategy.toString(),
-              ),
-              
+                ),
+
                 Container(
                   alignment: Alignment(1.0, 0.0),
                   padding: EdgeInsets.only(top: 10.0, left: 20.0),
-                    child: Text(
-                      'Marketic Strategy Level ( 10 for best )',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat'),
-                    ),
+                  child: Text(
+                    'Marketic Strategy Level ( 10 for best )',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat'),
+                  ),
                 ),
                 SizedBox(
                   height: 20,
@@ -331,34 +327,30 @@ class _EvavluationPageState extends State<EvavluationPage> {
                   minLines: 1,
                   controller: _marketicStrController,
                   decoration: InputDecoration(
-                  
-                  labelText: 'Marketic Strategy ',
-                  labelStyle: TextStyle(color: Colors.white),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    labelText: 'Marketic Strategy ',
+                    labelStyle: TextStyle(color: Colors.white),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
                   ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
+                  keyboardAppearance: Brightness.light,
+                  onChanged: (value) => _evalData['marketicStrategy'] = value,
                 ),
-                keyboardAppearance: Brightness.light,
-                
-                
-                onChanged: (value) => _evalData['marketicStrategy'] = value,
-                ),
-
 
                 SizedBox(
-                  height:40,
+                  height: 40,
                 ),
 
-                 // bussiness mdoel
+                // bussiness mdoel
                 Slider.adaptive(
                   value: _bussinessModel.toDouble(),
                   onChanged: (double newValue) {
@@ -371,18 +363,18 @@ class _EvavluationPageState extends State<EvavluationPage> {
                   max: 10,
                   divisions: 20,
                   label: _bussinessModel.toString(),
-              ),
-              
+                ),
+
                 Container(
                   alignment: Alignment(1.0, 0.0),
                   padding: EdgeInsets.only(top: 10.0, left: 20.0),
-                    child: Text(
-                      'Bussiness Model Level ( 10 for best )',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat'),
-                    ),
+                  child: Text(
+                    'Bussiness Model Level ( 10 for best )',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat'),
+                  ),
                 ),
                 SizedBox(
                   height: 20,
@@ -393,29 +385,25 @@ class _EvavluationPageState extends State<EvavluationPage> {
                   minLines: 1,
                   controller: _bussinessModelController,
                   decoration: InputDecoration(
-                  
-                  labelText: 'Bussiness Model',
-                  labelStyle: TextStyle(color: Colors.white),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    labelText: 'Bussiness Model',
+                    labelStyle: TextStyle(color: Colors.white),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
                   ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
+                  keyboardAppearance: Brightness.light,
+                  onChanged: (value) => _evalData['bussinessModel'] = value,
                 ),
-                keyboardAppearance: Brightness.light,
-                
-                
-                onChanged: (value) => _evalData['bussinessModel'] = value,
-                ),
-                
-                
+
                 //Remarks
                 SizedBox(
                   height: 40,
@@ -426,30 +414,24 @@ class _EvavluationPageState extends State<EvavluationPage> {
                   minLines: 2,
                   controller: _remarksController,
                   decoration: InputDecoration(
-                  
-                  labelText: 'Remarks ',
-                  labelStyle: TextStyle(color: Colors.white),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    labelText: 'Remarks ',
+                    labelStyle: TextStyle(color: Colors.white),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
                   ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
+                  keyboardAppearance: Brightness.light,
+                  onChanged: (value) => _evalData['remarks'] = value,
                 ),
-                keyboardAppearance: Brightness.light,
-                
-                
-                onChanged: (value) => _evalData['remarks'] = value,
-                ),
-
-
-
 
                 //suggestions given
                 SizedBox(
@@ -461,65 +443,62 @@ class _EvavluationPageState extends State<EvavluationPage> {
                   minLines: 2,
                   controller: _suggestionsController,
                   decoration: InputDecoration(
-                  
-                  labelText: 'Suggestions',
-                  labelStyle: TextStyle(color: Colors.white),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                    labelText: 'Suggestions',
+                    labelStyle: TextStyle(color: Colors.white),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
                   ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                ),
-                keyboardAppearance: Brightness.light,
-                
-                
-                onChanged: (value) => _evalData['suggestions'] = value,
+                  keyboardAppearance: Brightness.light,
+                  onChanged: (value) => _evalData['suggestions'] = value,
                 ),
 
                 SizedBox(
-                    height: 40,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    height: 40,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: _isLoading
-                          ? Center(
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation(
-                                  Colors.blue,
-                                ),
-                              ),
-                            )
-                          : RaisedButton(
-                              color: Color(0xff3284ff),
-                              textColor: Colors.white,
-                              child: Text(
-                                'Submit',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: 'SFProTextSemiMed',
-                                ),
-                              ),
-                              onPressed: _submit,
-                            ),
-                    ),
-                  ),
-                  SizedBox(
                   height: 40,
                 ),
-                
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: 40,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: _isLoading
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation(
+                                Colors.blue,
+                              ),
+                            ),
+                          )
+                        : RaisedButton(
+                            color: Color(0xff3284ff),
+                            textColor: Colors.white,
+                            child: Text(
+                              'Submit',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'SFProTextSemiMed',
+                              ),
+                            ),
+                            onPressed: _submit,
+                          ),
+                  ),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
               ],
             ),
           ),
+        ),
       )),
     );
   }
