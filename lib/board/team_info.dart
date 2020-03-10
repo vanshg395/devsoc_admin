@@ -254,6 +254,22 @@ class _TeamInfoState extends State<TeamInfo> {
                       SizedBox(
                         height:10
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Text(
+                          "Round 1 Score: ${_teamData['round1Eval']['FinalScore']}",
+                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                          maxLines: 1,
+                        ),
+                      ),
+                      SizedBox(
+                        height:10
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children:<Widget>[
@@ -446,6 +462,22 @@ class _TeamInfoState extends State<TeamInfo> {
                         padding: const EdgeInsets.only(top: 15.0),
                         child: Text(
                           "Round 2 Info",
+                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                          maxLines: 1,
+                        ),
+                      ),
+                      SizedBox(
+                        height:10
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Text(
+                          "Round 2 Score: ${_teamData['round2Eval']['FinalScore']}",
                           style: Theme.of(context).textTheme.headline6.copyWith(
                                 fontSize: 18,
                                 color: Colors.black,
