@@ -107,7 +107,7 @@ class Auth with ChangeNotifier {
     }
     final extractedUserData =
         json.decode(prefs.getString('userData')) as Map<String, Object>;
-    print(extractedUserData);
+    print('extractedUserData : ' + extractedUserData.toString());
     _token = extractedUserData['token'];
     _userType = extractedUserData['userType'];
     _username = extractedUserData['username'];
