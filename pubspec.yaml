@@ -32,7 +32,6 @@ dependencies:
   font_awesome_flutter: ^8.5.0
   shared_preferences: ^0.5.3+1
   firebase_messaging: ^6.0.12
-  flutter_multiselect: ^0.4.0
 
 dev_dependencies:
   flutter_test:
