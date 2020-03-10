@@ -975,7 +975,7 @@ class _TeamInfoState extends State<TeamInfo> {
                                       Padding(
                                         padding: EdgeInsets.only(left:5,top:15),
                                         child: Text(
-                                          "${_teamData['messages'][index]['user']['first_name']} ${_teamData['messages'][index]['user']['last_name']}: ${_teamData['messages'][index]['message_head']}",
+                                          "${_teamData['messages'][index]['user']['first_name']} ${_teamData['messages'][index]['user']['last_name']}",
                                           style: Theme.of(context).textTheme.headline6.copyWith(
                                                 fontSize: 18,
                                                   color: Colors.black,
@@ -985,7 +985,7 @@ class _TeamInfoState extends State<TeamInfo> {
                                         Padding(
                                         padding: EdgeInsets.only(left:5,top:15),
                                         child: Text(
-                                          "${_teamData['messages'][index]['message_head']}: ${_teamData['messages'][index]['message_body']}",
+                                          "${_teamData['messages'][index]['message_heading']}: ${_teamData['messages'][index]['message_body']}",
                                           style: Theme.of(context).textTheme.headline6.copyWith(
                                                 fontSize: 18,
                                                   color: Colors.black,
