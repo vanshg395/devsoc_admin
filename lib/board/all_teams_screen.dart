@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import './team_info.dart';
 import '../providers/auth.dart';
+import './teamInfoCore.dart';
 
 class AllTeamsScreen extends StatefulWidget {
   @override
@@ -65,11 +66,24 @@ class _AllTeamsScreenState extends State<AllTeamsScreen> {
                       child: Card(
                         color: Color(0xFF072031),
                         child: ListTile(
-                          onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => TeamInfo(allTeams[i]['id']),
-                            ),
-                          ),
+                          onTap: () {
+                            if (Provider.of<Auth>(context).userTypeText ==
+                                'Core-2nd Year') {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      TeamInfoCore(allTeams[i]['id']),
+                                ),
+                              );
+                            } else {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      TeamInfo(allTeams[i]['id']),
+                                ),
+                              );
+                            }
+                          },
                           title: Hero(
                             tag: allTeams[i]['id'],
                             child: Text(
