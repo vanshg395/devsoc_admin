@@ -15,6 +15,7 @@ class Auth with ChangeNotifier {
   String _username;
   String _name;
   String _token1;
+
   int get userType {
     if ((_userType == 'Core-2nd Year') || (_userType == 'Board')) {
       return 2;
@@ -118,21 +119,62 @@ class Auth with ChangeNotifier {
       print(response.body);
       final responseBody = json.decode(response.body);
       _teams = responseBody;
+      print(_teams['data'][0]);
+
       notifyListeners();
     } catch (e) {
       print(e);
     }
   }
 
-  Future<void> evaluate(String techImplementation, String ideaFesability, String marketicStrategy, String bussinessModel,String remarks,String suggestions,double _techImplementation,double _bussinessModel,double _marketicStrategy,double _ideaFeasability,double _implementationTillNow) async {
-
+  Future<void> evaluate(
+    double novelty,
+    double techFeasibility,
+    double techImplementation,
+    double impact,
+    double qualityRepr,
+    double bussinessModel,
+    double scalability,
+    String review,
+    String notes,
+    String suggestions,
+    String teamId,
+    String evalId,
+    int round,
+  ) async {
+    print(round);
+    print('Eval CP');
+    final url = 'http://api-devsoc.herokuapp.com/evaluvate/';
+    final res = await http.post(url, headers: {
+      'Authorization': _token
+    }, body: {
+      'novelty_slider': novelty,
+      'tech_feasability_slider': techFeasibility,
+      'impact_slider': impact,
+      'presentation_quality_slider': qualityRepr,
+      'bussiness_model_slider': bussinessModel,
+      'scalability_slider': scalability,
+      'remarks': review,
+      'notes': notes,
+      'suggesstions_given': suggestions,
+      'team_id': teamId,
+      'evaluator': evalId,
+    });
+    print(res.statusCode);
+    print(res.body);
+    try {} catch (e) {
+      print(e);
+    }
   }
 
   Future<void> sendReg(String deviceId) async {
     String url = 'http://api-devsoc.herokuapp.com/register/';
     try {
-      final response = await http.post(url,
-          headers: {'Authorization': _token}, body: {'device_id': deviceId});
+      final response = await http.post(
+        url,
+        headers: {'Authorization': _token},
+        body: {'device_id': deviceId},
+      );
       print(response.body);
       // final responseBody = json.decode(response.body);
       print(response.statusCode);

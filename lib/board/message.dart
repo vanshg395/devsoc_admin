@@ -97,162 +97,165 @@ class _MessageState extends State<Message> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFF030D18),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
-                  child: Text(
-                    'MESSAGE',
-                    style: Theme.of(context).textTheme.headline1,
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                SwitchListTile.adaptive(
-                  title: const Text('For Evaluation?'),
-                  value: isSwitched,
-                  onChanged: (bool value) {
-                    setState(() {
-                      isSwitched = value;
-                    });
-                  },
-                  secondary: const Icon(
-                    Icons.security,
-                    color: Colors.grey,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: _messageHeadController,
-                  decoration: InputDecoration(
-                    labelText: 'Message Head',
-                    labelStyle: TextStyle(color: Colors.white),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color(0xFF030D18),
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30.0),
+                    child: Text(
+                      'MESSAGE',
+                      style: Theme.of(context).textTheme.headline1,
                     ),
                   ),
-                  keyboardType: TextInputType.text,
-                  keyboardAppearance: Brightness.light,
-                  onChanged: (value) => _authData['messageHead'] = value,
-                  validator: (value) {
-                    if (value == null) {
-                      return 'This field is required';
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  minLines: 2,
-                  controller: _messageBodyController,
-                  decoration: InputDecoration(
-                    labelText: 'Message Body',
-                    labelStyle: TextStyle(color: Colors.white),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  SwitchListTile.adaptive(
+                    activeColor: Colors.blue,
+                    title: const Text('For Evaluation?'),
+                    value: isSwitched,
+                    onChanged: (bool value) {
+                      setState(() {
+                        isSwitched = value;
+                      });
+                    },
+                    secondary: const Icon(
+                      Icons.security,
+                      color: Colors.grey,
                     ),
                   ),
-                  keyboardAppearance: Brightness.light,
-                  onChanged: (value) => _authData['messageBody'] = value,
-                  validator: (value) {
-                    if (value == null) {
-                      return 'This field is required';
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  controller: _teamNumberController,
-                  decoration: InputDecoration(
-                    labelText: 'Team Number',
-                    labelStyle: TextStyle(color: Colors.white),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
+                  SizedBox(
+                    height: 20,
                   ),
-                  keyboardAppearance: Brightness.light,
-                  onChanged: (value) => teamNumber1 = value,
-                  validator: (value) {
-                    if (value == null) {
-                      return 'This field is required';
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: 40,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: _isLoading
-                        ? Center(
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation(
-                                Colors.blue,
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    controller: _teamNumberController,
+                    decoration: InputDecoration(
+                      labelText: 'Team Number',
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                    keyboardAppearance: Brightness.light,
+                    onChanged: (value) => teamNumber1 = value,
+                    validator: (value) {
+                      if (value == null) {
+                        return 'This field is required';
+                      }
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    controller: _messageHeadController,
+                    decoration: InputDecoration(
+                      labelText: 'Message Head',
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                    keyboardType: TextInputType.text,
+                    keyboardAppearance: Brightness.light,
+                    onChanged: (value) => _authData['messageHead'] = value,
+                    validator: (value) {
+                      if (value == null) {
+                        return 'This field is required';
+                      }
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    minLines: 5,
+                    controller: _messageBodyController,
+                    decoration: InputDecoration(
+                      labelText: 'Message Body',
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                    keyboardAppearance: Brightness.light,
+                    onChanged: (value) => _authData['messageBody'] = value,
+                    validator: (value) {
+                      if (value == null) {
+                        return 'This field is required';
+                      }
+                    },
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: 40,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: _isLoading
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation(
+                                  Colors.blue,
+                                ),
                               ),
-                            ),
-                          )
-                        : RaisedButton(
-                            color: Color(0xff3284ff),
-                            textColor: Colors.white,
-                            child: Text(
-                              'Submit',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'SFProTextSemiMed',
+                            )
+                          : RaisedButton(
+                              color: Color(0xff3284ff),
+                              textColor: Colors.white,
+                              child: Text(
+                                'Submit',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'SFProTextSemiMed',
+                                ),
                               ),
+                              onPressed: _submit,
                             ),
-                            onPressed: _submit,
-                          ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

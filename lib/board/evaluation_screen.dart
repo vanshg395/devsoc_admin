@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/auth.dart';
+import './evaluation.dart';
 
 class EvaluationScreen extends StatefulWidget {
   @override
@@ -19,14 +20,17 @@ class _EvaluationScreenState extends State<EvaluationScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 30,
-                left: 20,
-              ),
-              child: Text(
-                'EVALUATE',
-                style: Theme.of(context).textTheme.headline1,
+            Hero(
+              tag: 'evalHead',
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 30,
+                  left: 20,
+                ),
+                child: Text(
+                  'EVALUATE',
+                  style: Theme.of(context).textTheme.headline1,
+                ),
               ),
             ),
             SizedBox(
@@ -69,40 +73,110 @@ class _EvaluationScreenState extends State<EvaluationScreen> {
                               ),
                             ),
                           )
-                        : ListView.builder(
-                            itemBuilder: (ctx, i) => Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              child: Card(
-                                color: Color(0xFF072031),
-                                child: ListTile(
-                                  title: Text(
-                                    userDetails['data'][i]['team']['team_name'],
-                                    overflow: TextOverflow.fade,
-                                    softWrap: false,
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'SFProTextSemiMed',
+                        : Column(
+                            children: <Widget>[
+                              ListView.builder(
+                                shrinkWrap: true,
+                                itemBuilder: (ctx, i) => Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20.0, vertical: 10.0),
+                                  child: Card(
+                                    color: Color(0xFF072031),
+                                    child: ListTile(
+                                      onTap: () => Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => EvavluationPage(
+                                            userDetails['data'][i]['team_name'],
+                                            userDetails['data'][i]['team_id'],
+                                            userDetails['data'][i]['eval_id'],
+                                            userDetails['round'],
+                                          ),
+                                        ),
+                                      ),
+                                      title: Text(
+                                        userDetails['data'][i]['team_name'],
+                                        overflow: TextOverflow.fade,
+                                        softWrap: false,
+                                        maxLines: 1,
+                                        style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'SFProTextSemiMed',
+                                        ),
+                                      ),
+                                      subtitle: Text(
+                                        userDetails['data'][i]['track'] ??
+                                            'abc',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontFamily: 'SFProDisplayLight',
+                                        ),
+                                      ),
+                                      leading: CircleAvatar(
+                                        child: Text(userDetails['data'][i]
+                                                ['team_number']
+                                            .toString()),
+                                      ),
                                     ),
-                                  ),
-                                  subtitle: Text(
-                                    userDetails['data'][i]['team']['track'],
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'SFProDisplayLight',
-                                    ),
-                                  ),
-                                  leading: CircleAvatar(
-                                    child: Text(userDetails['data'][i]['team']
-                                            ['team_number']
-                                        .toString()),
                                   ),
                                 ),
+                                itemCount: userDetails['data'].length,
                               ),
-                            ),
-                            itemCount: userDetails['data'].length,
+                              ListView.builder(
+                                shrinkWrap: true,
+                                itemBuilder: (ctx, i) => Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20.0, vertical: 10.0),
+                                  child: Card(
+                                    color: Color(0xFF072031),
+                                    child: ListTile(
+                                      // onTap: () => Navigator.of(context).push(
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) => EvavluationPage(
+                                      //       userDetails['completed_data'][i]
+                                      //           ['team_name'],
+                                      //       userDetails['completed_data'][i]
+                                      //           ['team_id'],
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      title: Text(
+                                        userDetails['completed_data'][i]
+                                            ['team_name'],
+                                        overflow: TextOverflow.fade,
+                                        softWrap: false,
+                                        maxLines: 1,
+                                        style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'SFProTextSemiMed',
+                                        ),
+                                      ),
+                                      subtitle: Text(
+                                        userDetails['completed_data'][i]
+                                                ['track'] ??
+                                            'abc',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontFamily: 'SFProDisplayLight',
+                                        ),
+                                      ),
+                                      trailing: Icon(
+                                        Icons.done_outline,
+                                        color: Colors.blue,
+                                      ),
+                                      leading: CircleAvatar(
+                                        child: Text(
+                                            userDetails['completed_data'][i]
+                                                    ['team_number']
+                                                .toString()),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                itemCount: userDetails['completed_data'].length,
+                              ),
+                            ],
                           ),
                   ),
             // SizedBox(
