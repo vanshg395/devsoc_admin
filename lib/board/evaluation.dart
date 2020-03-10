@@ -39,6 +39,9 @@ class _EvavluationPageState extends State<EvavluationPage> {
 
   Future<void> _submit() async {
     print('Checkpoint 1');
+    if (_formKey.currentState.validate()) {
+      return;
+    }
     final _review = _evalData['reviews'];
     final _notes = _evalData['notes'];
     final _suggestions = _evalData['suggestions'];
@@ -397,6 +400,11 @@ class _EvavluationPageState extends State<EvavluationPage> {
                     ),
                     keyboardAppearance: Brightness.light,
                     onChanged: (value) => _evalData['reviews'] = value,
+                    validator: (value) {
+                      if (value == null) {
+                        return 'This Field is mandatory';
+                      }
+                    },
                   ),
 
                   //notes given
@@ -426,6 +434,11 @@ class _EvavluationPageState extends State<EvavluationPage> {
                     ),
                     keyboardAppearance: Brightness.light,
                     onChanged: (value) => _evalData['notes'] = value,
+                    validator: (value) {
+                      if (value == null) {
+                        return 'This Field is mandatory';
+                      }
+                    },
                   ),
 
                   //suggestions given
@@ -455,6 +468,11 @@ class _EvavluationPageState extends State<EvavluationPage> {
                     ),
                     keyboardAppearance: Brightness.light,
                     onChanged: (value) => _evalData['suggestions'] = value,
+                    validator: (value) {
+                      if (value == null) {
+                        return 'This Field is mandatory';
+                      }
+                    },
                   ),
 
                   SizedBox(
