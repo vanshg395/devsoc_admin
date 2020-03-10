@@ -418,8 +418,8 @@ class _TeamInfoState extends State<TeamInfo> {
                                           "Remarks: ${_teamData['round1Eval']['data'][index]['remarks']}",
                                           style: Theme.of(context).textTheme.headline6.copyWith(
                                                 fontSize: 18,
-                                color: Colors.black,
-                              ),
+                                                color: Colors.black,
+                                              ),
                                         ),
                                       ),
                                       Padding(
@@ -428,20 +428,32 @@ class _TeamInfoState extends State<TeamInfo> {
                                           "Notes: ${_teamData['round1Eval']['data'][index]['remarks']}",
                                           style: Theme.of(context).textTheme.headline6.copyWith(
                                                 fontSize: 18,
-                                color: Colors.black,
-                              ),
+                                                color: Colors.black,
+                                              ),
                                         ),
-                                      ),Padding(
+                                      ),
+                                      Padding(
                                         padding: const EdgeInsets.only(left:15,top:15),
                                         child: Text(
                                           "Suggestions Given: ${_teamData['round1Eval']['data'][index]['suggesstions_given']}",
                                           style: Theme.of(context).textTheme.headline6.copyWith(
                                                 fontSize: 18,
-                                color: Colors.black,
-                              ),
+                                                color: Colors.black,
+                                              ),
                                         ),
                                       ),
-                                    ],
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Scaled Score: ${_teamData['round1Eval']['data'][index]['score']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                              ),
+                                        ),
+                                    
+                                      )
+                                      ],
                                   ),
                                 )
                               );
@@ -625,8 +637,8 @@ class _TeamInfoState extends State<TeamInfo> {
                                           "Scalability: ${_teamData['round2Eval']['data'][index]['scalability_slider']}",
                                           style: Theme.of(context).textTheme.headline6.copyWith(
                                                 fontSize: 18,
-                                color: Colors.black,
-                              ),
+                                                color: Colors.black,
+                                              ),
                                           overflow: TextOverflow.fade,
                                           softWrap: false,
                                           maxLines: 1,
@@ -638,8 +650,8 @@ class _TeamInfoState extends State<TeamInfo> {
                                           "Remarks: ${_teamData['round2Eval']['data'][index]['remarks']}",
                                           style: Theme.of(context).textTheme.headline6.copyWith(
                                                 fontSize: 18,
-                                color: Colors.black,
-                              ),
+                                                color: Colors.black,
+                                              ),
                                         ),
                                       ),
                                       Padding(
@@ -648,19 +660,30 @@ class _TeamInfoState extends State<TeamInfo> {
                                           "Notes: ${_teamData['round2Eval']['data'][index]['remarks']}",
                                           style: Theme.of(context).textTheme.headline6.copyWith(
                                                 fontSize: 18,
-                                color: Colors.black,
-                              ),
+                                                color: Colors.black,
+                                              ),
                                         ),
-                                      ),Padding(
+                                      ),
+                                      Padding(
                                         padding: const EdgeInsets.only(left:15,top:15),
                                         child: Text(
                                           "Suggestions Given: ${_teamData['round2Eval']['data'][index]['suggesstions_given']}",
                                           style: Theme.of(context).textTheme.headline6.copyWith(
                                                 fontSize: 18,
-                                color: Colors.black,
-                              ),
+                                                color: Colors.black,
+                                              ),
                                         ),
                                       ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Score: ${_teamData['round2Eval']['data'][index]['score']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                              ),
+                                        ),
+                                      )
                                     ],
                                   ),
                                 )
@@ -671,20 +694,323 @@ class _TeamInfoState extends State<TeamInfo> {
                         ), 
 
                       ]
-                      )
-
+                      ),
 
                       ]
                       )
                   ),
+                      SizedBox(
+                    height:30
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(10,20,10,20),
+                    decoration: BoxDecoration(
+                      color: Colors.blueGrey[200],
+                      borderRadius:BorderRadius.circular(25.0)
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:<Widget>[
+                        Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Text(
+                          "Round 3 Info",
+                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                          maxLines: 1,
+                        ),
+                      ),
+                      SizedBox(
+                        height:10
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Text(
+                          "Round 3 Score: ${_teamData['round3Eval']['FinalScore']}",
+                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                          maxLines: 1,
+                        ),
+                      ),
+                      SizedBox(
+                        height:10
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children:<Widget>[
+                        Padding(
+                        padding: const EdgeInsets.only(top: 15.0,left:20),
+                        child: _teamData['round3Eval']['data'] == null ? Text('No Evaluations in Round 3',
+                          style: Theme.of(context).textTheme.headline6.copyWith(
+                          fontSize: 16,
+                          color: Colors.red
+                        )
+                      ) 
+                        : ListView.builder(
+                            shrinkWrap:true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: _teamData['round2Eval']['data'].length,
+                            itemBuilder: (BuildContext ctxt, int index) {
+                              return  Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Card(
+                                  color: Colors.blueGrey[300],
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.only(left:5,top:15),
+                                        child: Text(
+                                          "Eval Name: ${_teamData['round3Eval']['data'][index]['evalName']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                                          overflow: TextOverflow.fade,
+                                          softWrap: false,
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Level: ${_teamData['round3Eval']['data'][index]['userType']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                                          overflow: TextOverflow.fade,
+                                          softWrap: false,
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Novelty: ${_teamData['round3Eval']['data'][index]['novelty_slider']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                                          overflow: TextOverflow.fade,
+                                          softWrap: false,
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Feasability: ${_teamData['round3Eval']['data'][index]['tech_feasability_slider']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                                          overflow: TextOverflow.fade,
+                                          softWrap: false,
+                                          maxLines: 1,
+                                        ),
+                                      ),Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Impact: ${_teamData['round3Eval']['data'][index]['impact_slider']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                                          overflow: TextOverflow.fade,
+                                          softWrap: false,
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Presentation Quality: ${_teamData['round3Eval']['data'][index]['presentation_quality_slider']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                                          overflow: TextOverflow.fade,
+                                          softWrap: false,
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Bussiness Model: ${_teamData['round3Eval']['data'][index]['bussiness_model_slider']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                                          overflow: TextOverflow.fade,
+                                          softWrap: false,
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Scalability: ${_teamData['round3Eval']['data'][index]['scalability_slider']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                              ),
+                                          overflow: TextOverflow.fade,
+                                          softWrap: false,
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Remarks: ${_teamData['round3Eval']['data'][index]['remarks']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Notes: ${_teamData['round3Eval']['data'][index]['remarks']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Suggestions Given: ${_teamData['round3Eval']['data'][index]['suggesstions_given']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:15,top:15),
+                                        child: Text(
+                                          "Score: ${_teamData['round3Eval']['data'][index]['score']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                              ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              );
+                            }
+                          )
+                            
+                        ), 
 
+                      ]
+                      ),
 
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+                      ]
+                      )
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(10,20,10,20),
+                    decoration: BoxDecoration(
+                      color: Colors.blueGrey[200],
+                      borderRadius:BorderRadius.circular(25.0)
+                    ),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children:<Widget>[
+                          Padding(
+                          padding: EdgeInsets.only(left:5,top:15),
+                          child: Text(
+                            "Messages :",
+                            style: Theme.of(context).textTheme.headline6.copyWith(
+                                  fontSize: 18,
+                                    color: Colors.black,
+                                    ),
+                            ),
+                          ),
+                        Padding(
+                        padding: const EdgeInsets.only(top: 15.0,left:20),
+                        child: _teamData['messages'] == null ? Text('No Messages',
+                          style: Theme.of(context).textTheme.headline6.copyWith(
+                          fontSize: 16,
+                          color: Colors.red
+                        )
+                      ) 
+                        : ListView.builder(
+                            shrinkWrap:true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: _teamData['messages'].length,
+                            itemBuilder: (BuildContext ctxt, int index) {
+                              return  Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Card(
+                                  color: Colors.blueGrey[300],
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.only(left:5,top:15),
+                                        child: Text(
+                                          "${_teamData['messages'][index]['user']['first_name']} ${_teamData['messages'][index]['user']['last_name']}: ${_teamData['messages'][index]['message_head']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                                  color: Colors.black,
+                                                  ),
+                                          ),
+                                        ),
+                                        Padding(
+                                        padding: EdgeInsets.only(left:5,top:15),
+                                        child: Text(
+                                          "${_teamData['messages'][index]['message_head']}: ${_teamData['messages'][index]['message_body']}",
+                                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                                fontSize: 18,
+                                                  color: Colors.black,
+                                                  ),
+                                                  maxLines: 3,
+                                          ),
+                                        ),
+                                        
+                                      ],
+                                  ),
+                              )
+                            );
+                          }
+                          )
+                        )
+                    ]
+                    )
+                    )
+                ]
+                )
+          
+          )
+          ]
+          )
+    )
     );
   }
 }
