@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import './assign_screen.dart';
 import './team_info.dart';
 import '../providers/auth.dart';
 import './teamInfoCore.dart';
@@ -112,6 +113,23 @@ class _AllTeamsScreenState extends State<AllTeamsScreen> {
                               allTeams[i]['team_number'].toString(),
                             ),
                           ),
+                          trailing: Provider.of<Auth>(context, listen: false)
+                                      .userTypeText ==
+                                  'Core-2nd Year'
+                              ? null
+                              : IconButton(
+                                  icon: Icon(
+                                    Icons.mode_edit,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (ctx) => AssignScreen(),
+                                      ),
+                                    );
+                                  },
+                                ),
                         ),
                       ),
                     ),
