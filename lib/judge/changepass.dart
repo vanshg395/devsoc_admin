@@ -47,7 +47,7 @@ class _ChangePassState extends State<ChangePass> {
       print(_authData);
       await Provider.of<Auth>(context, listen: false)
           .changePass(password, password1, password2);
-      Navigator.of(context).pop();
+      Navigator.pop(context);
     } catch (error) {
       errorMessage = error.toString();
       print(errorMessage);

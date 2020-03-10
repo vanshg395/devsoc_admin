@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+import './profile_screen.dart';
 import './timeline_screen.dart';
 import './about_us_screen.dart';
 import './evaluation_screen.dart';
@@ -30,10 +31,10 @@ class _JudgeScreenState extends State<JudgeScreen> {
         'page': AboutUsScreen(),
         'title': 'About Us',
       },
-      // {
-      //   'page': EssentialsScreen(),
-      //   'title': 'Essentials',
-      // },
+      {
+        'page': EssentialsScreen(),
+        'title': 'Essentials',
+      },
     ];
     super.initState();
   }
