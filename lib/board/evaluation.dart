@@ -42,6 +42,7 @@ class _EvavluationPageState extends State<EvavluationPage> {
     final _review = _evalData['reviews'];
     final _notes = _evalData['notes'];
     final _suggestions = _evalData['suggestions'];
+    print(' review : '+_notes);
     setState(() {
       _isLoading = true;
     });
@@ -395,7 +396,7 @@ class _EvavluationPageState extends State<EvavluationPage> {
                       ),
                     ),
                     keyboardAppearance: Brightness.light,
-                    onChanged: (value) => _evalData['remarks'] = value,
+                    onChanged: (value) => _evalData['reviews'] = value,
                   ),
 
                   //notes given
@@ -424,7 +425,7 @@ class _EvavluationPageState extends State<EvavluationPage> {
                       ),
                     ),
                     keyboardAppearance: Brightness.light,
-                    onChanged: (value) => _evalData['suggestions'] = value,
+                    onChanged: (value) => _evalData['notes'] = value,
                   ),
 
                   //suggestions given

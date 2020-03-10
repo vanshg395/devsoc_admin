@@ -144,22 +144,25 @@ class Auth with ChangeNotifier {
   ) async {
     print(round);
     print('Eval CP');
+    print(notes);
     final url = 'http://api-devsoc.herokuapp.com/evaluvate/';
+
     final res = await http.post(url, headers: {
-      'Authorization': _token
-    }, body: {
-      'novelty_slider': novelty,
-      'tech_feasability_slider': techFeasibility,
-      'impact_slider': impact,
-      'presentation_quality_slider': qualityRepr,
-      'bussiness_model_slider': bussinessModel,
-      'scalability_slider': scalability,
-      'remarks': review,
-      'notes': notes,
-      'suggesstions_given': suggestions,
-      'team_id': teamId,
-      'evaluator': evalId,
-    });
+      'Authorization': _token,
+      'Content-Type': 'application/json'
+    }, body: jsonEncode({
+    'novelty_slider': novelty.toInt(),
+    'tech_feasability_slider': techFeasibility.toInt(),
+    'impact_slider': impact.toInt(),
+    'presentation_quality_slider': qualityRepr.toInt(),
+    'bussiness_model_slider': bussinessModel.toInt(),
+    'scalability_slider': scalability.toInt(),
+    'remarks': review,
+    'notes': notes,
+    'suggesstions_given': suggestions,
+    'team_id': teamId,
+    'evaluator': evalId,
+  }));
     print(res.statusCode);
     print(res.body);
     try {} catch (e) {
