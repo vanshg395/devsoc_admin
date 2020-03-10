@@ -63,7 +63,8 @@ class _ChangePassState extends State<ChangePass> {
                 title: Text('Authentication Error'),
                 content: Padding(
                   padding: EdgeInsets.only(top: 10),
-                  child: Text(errorMessage),
+                  child: Text(
+                      'Password could not changed. Please choose another password.'),
                 ),
                 actions: <Widget>[
                   CupertinoDialogAction(
@@ -77,7 +78,8 @@ class _ChangePassState extends State<ChangePass> {
                 title: Text('Authentication Error'),
                 content: Padding(
                   padding: EdgeInsets.only(top: 10),
-                  child: Text(errorMessage),
+                  child: Text(
+                      'Password could not changed. Please choose another password.'),
                 ),
                 actions: <Widget>[
                   FlatButton(
