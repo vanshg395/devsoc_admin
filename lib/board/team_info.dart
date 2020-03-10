@@ -223,6 +223,19 @@ class _TeamInfoState extends State<TeamInfo> {
                           maxLines: 1,
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Text(
+                          "Score: ${_teamData['finalScore']}",
+                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                          maxLines: 1,
+                        ),
+                      ),
                       ]
                     )
                   ),
