@@ -67,7 +67,8 @@ class _AllTeamsScreenState extends State<AllTeamsScreen> {
                         color: Color(0xFF072031),
                         child: ListTile(
                           onTap: () {
-                            if (Provider.of<Auth>(context).userTypeText ==
+                            if (Provider.of<Auth>(context, listen: false)
+                                    .userTypeText ==
                                 'Core-2nd Year') {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
