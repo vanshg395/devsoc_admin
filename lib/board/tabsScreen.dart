@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
+
+import './all_teams_screen.dart';
 import './timeline_screen.dart';
 import './about_us_screen.dart';
 import './evaluation_screen.dart';
@@ -28,9 +30,13 @@ class _BoardScreenState extends State<BoardScreen> {
         'title': 'Speaker',
       },
       {
-        'page': AboutUsScreen(),
-        'title': 'About Us',
+        'page': AllTeamsScreen(),
+        'title': 'All Teams',
       },
+      // {
+      //   'page': AboutUsScreen(),
+      //   'title': 'About Us',
+      // },
       {
         'page': Message(),
         'title': 'Messages',
@@ -91,14 +97,14 @@ class _BoardScreenState extends State<BoardScreen> {
             title: SizedBox(),
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/img/icons/support.svg',
-              height: 23,
+            icon: Icon(
+              Icons.view_carousel,
+              size: 33,
               color: Colors.grey,
             ),
-            activeIcon: SvgPicture.asset(
-              'assets/img/icons/support.svg',
-              height: 23,
+            activeIcon: Icon(
+              Icons.view_carousel,
+              size: 33,
               color: Color(0xff3284ff),
             ),
             title: SizedBox(),

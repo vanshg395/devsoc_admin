@@ -42,7 +42,7 @@ class _EvavluationPageState extends State<EvavluationPage> {
     final _review = _evalData['reviews'];
     final _notes = _evalData['notes'];
     final _suggestions = _evalData['suggestions'];
-    print(' review : '+_notes);
+    print(' review : ' + _notes);
     setState(() {
       _isLoading = true;
     });
@@ -222,8 +222,8 @@ class _EvavluationPageState extends State<EvavluationPage> {
                       },
                       activeColor: Colors.blue,
                       min: 0,
-                      max: 10,
-                      divisions: 20,
+                      max: 100,
+                      divisions: 100,
                       label: _techImplementation.toString(),
                     ),
                   if (widget.round == 3)

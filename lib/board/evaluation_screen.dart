@@ -58,7 +58,8 @@ class _EvaluationScreenState extends State<EvaluationScreen> {
                     ),
                   )
                 : Expanded(
-                    child: userDetails['data'].length == 0
+                    child: (userDetails['data'].length == 0 &&
+                            userDetails['completed_data'].length == 0)
                         ? Center(
                             child: Padding(
                               padding:

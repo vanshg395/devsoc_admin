@@ -12,6 +12,7 @@ class Auth with ChangeNotifier {
   String _token;
   String _userType;
   dynamic _teams;
+  dynamic _allTeams;
   String _username;
   String _name;
   String _token1;
@@ -44,6 +45,10 @@ class Auth with ChangeNotifier {
 
   dynamic get teamInfo {
     return _teams;
+  }
+
+  dynamic get allTeams {
+    return _allTeams;
   }
 
   String get username {
@@ -84,7 +89,8 @@ class Auth with ChangeNotifier {
         });
         prefs.setString('userData', data);
         _register();
-        getTeams();
+        await getTeams();
+        await getAllTeams();
         notifyListeners();
       } else {
         throw HttpException('Unable to log in with provided credentials.');
@@ -107,7 +113,8 @@ class Auth with ChangeNotifier {
     _username = extractedUserData['username'];
     _name = extractedUserData['name'];
     await _register();
-    getTeams();
+    await getTeams();
+    await getAllTeams();
     notifyListeners();
     return true;
   }
@@ -147,27 +154,44 @@ class Auth with ChangeNotifier {
     print(notes);
     final url = 'http://api-devsoc.herokuapp.com/evaluvate/';
 
-    final res = await http.post(url, headers: {
-      'Authorization': _token,
-      'Content-Type': 'application/json'
-    }, body: jsonEncode({
-    'novelty_slider': novelty.toInt(),
-    'tech_feasability_slider': techFeasibility.toInt(),
-    'impact_slider': impact.toInt(),
-    'presentation_quality_slider': qualityRepr.toInt(),
-    'bussiness_model_slider': bussinessModel.toInt(),
-    'scalability_slider': scalability.toInt(),
-    'remarks': review,
-    'notes': notes,
-    'suggesstions_given': suggestions,
-    'team_id': teamId,
-    'evaluator': evalId,
-  }));
+    final res = await http.post(
+      url,
+      headers: {'Authorization': _token, 'Content-Type': 'application/json'},
+      body: jsonEncode(
+        {
+          'novelty_slider': novelty.toInt(),
+          'work_done_slider': techImplementation.toInt(),
+          'tech_feasability_slider': techFeasibility.toInt(),
+          'impact_slider': impact.toInt(),
+          'presentation_quality_slider': qualityRepr.toInt(),
+          'bussiness_model_slider': bussinessModel.toInt(),
+          'scalability_slider': scalability.toInt(),
+          'remarks': review,
+          'notes': notes,
+          'suggesstions_given': suggestions,
+          'team_id': teamId,
+          'evaluator': evalId,
+        },
+      ),
+    );
     print(res.statusCode);
     print(res.body);
     try {} catch (e) {
       print(e);
+      throw e;
     }
+  }
+
+  Future<void> getAllTeams() async {
+    String url = 'http://api-devsoc.herokuapp.com/team/names';
+    try {
+      final response = await http.get(
+        url,
+        headers: {'Authorization': _token},
+      );
+      print(response.body);
+      _allTeams = json.decode(response.body);
+    } catch (e) {}
   }
 
   Future<void> sendReg(String deviceId) async {

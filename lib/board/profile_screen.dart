@@ -98,7 +98,8 @@ class EssentialsScreen extends StatelessWidget {
                       ),
                     ),
                     subtitle: Text(
-                      Provider.of<Auth>(context, listen: false).userTypeText,
+                      Provider.of<Auth>(context, listen: false).userTypeText ??
+                          '',
                       style: TextStyle(
                         fontSize: 14,
                         fontFamily: 'SFProTextSemiLight',
@@ -159,7 +160,12 @@ class EssentialsScreen extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.push(context,MaterialPageRoute(builder: (context)=> ChangePass(),),);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChangePass(),
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -182,9 +188,8 @@ class EssentialsScreen extends StatelessWidget {
                         fontFamily: 'SFProTextSemiMed',
                       ),
                     ),
-                    onPressed: () async{
+                    onPressed: () async {
                       await Provider.of<Auth>(context, listen: false).logout();
-                      
                     },
                   ),
                 ),
