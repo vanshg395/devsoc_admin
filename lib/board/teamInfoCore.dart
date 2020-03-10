@@ -18,6 +18,8 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
   bool _isLoaded = false;
   Map<String, dynamic> _teamData;
 
+
+
   @override
   void initState() {
     String _token = Provider.of<Auth>(context, listen: false).token;
@@ -27,9 +29,8 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
 
   Future<void> getInfo(_token) async {
     // write direct http code here for getting team info using id and store in _teamData.
-    String url =
-        'https://api-devsoc.herokuapp.com/team/info/second/${widget.teamId}';
-
+    String url ='https://api-devsoc.herokuapp.com/team/info/second/${widget.teamId}';
+    print('yess');
     try {
       final response = await http.get(
         url,
@@ -39,7 +40,6 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
       final responseBody = json.decode(response.body);
       _teamData = responseBody;
       print(_teamData);
-      print('Length :' + _teamData['teamInfo']['members'].length);
     } catch (e) {
       print(e);
     }
@@ -51,14 +51,20 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         backgroundColor: Color(0xFF030D18),
         body: SafeArea(
+          
             child: _isLoaded
-                ? ListView(children: <Widget>[
+                ? ListView(
+                  shrinkWrap: true,
+                  children: <Widget>[
+                  
                     Container(
                         padding: EdgeInsets.all(10),
                         color: Color(0xFF030D18),
                         child: Column(
+                          
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                               Padding(
@@ -95,7 +101,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                           padding:
                                               const EdgeInsets.only(top: 15.0),
                                           child: Text(
-                                            "Team Name: ${_teamData['teamInfo']['team_name']}",
+                                            "Team Name: ${_teamData['team_name']}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline6
@@ -112,7 +118,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                           padding:
                                               const EdgeInsets.only(top: 15.0),
                                           child: Text(
-                                            "Team Number: ${_teamData['teamInfo']['team_number']}",
+                                            "Team Number: ${_teamData['team_number']}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline6
@@ -129,7 +135,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                           padding:
                                               const EdgeInsets.only(top: 15.0),
                                           child: Text(
-                                            "Team Idea: ${_teamData['teamInfo']['idea']}",
+                                            "Team Idea: ${_teamData['idea']}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline6
@@ -146,7 +152,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                           padding:
                                               const EdgeInsets.only(top: 15.0),
                                           child: Text(
-                                            "Team Leader: ${_teamData['teamInfo']['team_leader']}",
+                                            "Team Leader: ${_teamData['team_leader']}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline6
@@ -163,7 +169,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                           padding:
                                               const EdgeInsets.only(top: 15.0),
                                           child: Text(
-                                            "Phone: ${_teamData['teamInfo']['team_leader_phone']}",
+                                            "Phone: ${_teamData['team_leader_phone']}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline6
@@ -196,9 +202,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                         Padding(
                                             padding: const EdgeInsets.only(
                                                 top: 15.0, left: 20),
-                                            child: _teamData['teamInfo']
-                                                        ['members'] ==
-                                                    null
+                                            child: _teamData['team_mem'] ==null
                                                 ? Text('NO TEAM MATES',
                                                     style: Theme.of(context)
                                                         .textTheme
@@ -208,8 +212,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                                             color: Colors.red))
                                                 : ListView.builder(
                                                     itemCount:
-                                                        _teamData['teamInfo']
-                                                                ['members']
+                                                        _teamData['team_mem']
                                                             .length,
                                                     itemBuilder:
                                                         (BuildContext ctxt,
@@ -220,7 +223,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                                                       .only(
                                                                   top: 15.0),
                                                           child: Text(
-                                                            "$index ,${_teamData['teamInfo']['members'][index]}",
+                                                            "$index ,${_teamData['team_mem'][index]}",
                                                             style: Theme.of(
                                                                     context)
                                                                 .textTheme
@@ -236,7 +239,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                           padding:
                                               const EdgeInsets.only(top: 15.0),
                                           child: Text(
-                                            "Track: ${_teamData['teamInfo']['track']}",
+                                            "Track: ${_teamData['track']}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline6
@@ -253,7 +256,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                           padding:
                                               const EdgeInsets.only(top: 15.0),
                                           child: Text(
-                                            "Status: ${_teamData['teamInfo']['status']}",
+                                            "Status: ${_teamData['status']}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline6
