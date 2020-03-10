@@ -18,8 +18,6 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
   bool _isLoaded = false;
   Map<String, dynamic> _teamData;
 
-
-
   @override
   void initState() {
     String _token = Provider.of<Auth>(context, listen: false).token;
@@ -29,7 +27,8 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
 
   Future<void> getInfo(_token) async {
     // write direct http code here for getting team info using id and store in _teamData.
-    String url ='https://api-devsoc.herokuapp.com/team/info/second/${widget.teamId}';
+    String url =
+        'https://api-devsoc.herokuapp.com/team/info/second/${widget.teamId}';
     print('yess');
     try {
       final response = await http.get(
@@ -51,20 +50,14 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
         backgroundColor: Color(0xFF030D18),
         body: SafeArea(
-          
             child: _isLoaded
-                ? ListView(
-                  shrinkWrap: true,
-                  children: <Widget>[
-                  
+                ? ListView(shrinkWrap: true, children: <Widget>[
                     Container(
                         padding: EdgeInsets.all(10),
                         color: Color(0xFF030D18),
                         child: Column(
-                          
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                               Padding(
@@ -202,7 +195,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                         Padding(
                                             padding: const EdgeInsets.only(
                                                 top: 15.0, left: 20),
-                                            child: _teamData['team_mem'] ==null
+                                            child: _teamData['team_mem'] == null
                                                 ? Text('NO TEAM MATES',
                                                     style: Theme.of(context)
                                                         .textTheme
@@ -211,6 +204,7 @@ class _TeamInfoCoreState extends State<TeamInfoCore> {
                                                             fontSize: 18,
                                                             color: Colors.red))
                                                 : ListView.builder(
+                                                    shrinkWrap: true,
                                                     itemCount:
                                                         _teamData['team_mem']
                                                             .length,
