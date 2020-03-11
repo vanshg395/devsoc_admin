@@ -35,32 +35,30 @@ class _AssignScreenState extends State<AssignScreen> {
   Future<void> _submit() async {
     String url = 'http://api-devsoc.herokuapp.com/members/assign/';
     final eval = assignedEvaluators;
-    try{
-      final response = await http.post(url,
+    final response = await http.post(url,
         headers: {
           'Authorization': Provider.of<Auth>(context, listen: false).token,
-          'Headers':'application/json'
+          'Headers': 'application/json'
         },
-        body:json.encode({
-          'team_id':widget.teamId,
-          'members':eval,
-        })
-      );
-      print('data : '+widget.teamId+eval.toString());
-      final resBody = json.decode(response.body);
-      print(resBody);
-      if (response.statusCode==200){
-        print('done');
-        Navigator.of(context).pop();
-
-      }
-      else{
-        throw HttpException(
-            'Something went wrong');
-      }
-      
+        body: json.encode({
+          'team_id': widget.teamId,
+          'members': eval,
+        }));
+    print('data : ' + widget.teamId + eval.toString());
+    final resBody = json.decode(response.body);
+    print(response.statusCode);
+    print(resBody);
+    if (response.statusCode == 200) {
+      print('done');
+      Navigator.of(context).pop();
     }
-    catch(e){
+    try {
+      // else{
+      //   throw HttpException(
+      //       'Something went wrong');
+      // }
+
+    } catch (e) {
       print(e);
     }
     setState(() {
@@ -160,25 +158,29 @@ class _AssignScreenState extends State<AssignScreen> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 30,
+                    ),
                     Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: 40,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child:  RaisedButton(
-                            color: Color(0xff3284ff),
-                            textColor: Colors.white,
-                            child: Text(
-                              'SUBMIT',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'SFProTextSemiMed',
-                              ),
+                      padding: EdgeInsets.symmetric(horizontal: 30),
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 40,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: RaisedButton(
+                          color: Color(0xff3284ff),
+                          textColor: Colors.white,
+                          child: Text(
+                            'SUBMIT',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: 'SFProTextSemiMed',
                             ),
-                            onPressed: _submit,
                           ),
-                  ),
-                ),
+                          onPressed: _submit,
+                        ),
+                      ),
+                    ),
                     // MultiSelect(
                     //     autovalidate: false,
                     //     titleText: 'Hello',
