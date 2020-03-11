@@ -46,6 +46,7 @@ class _AssignScreenState extends State<AssignScreen> {
           'members':eval,
         })
       );
+      print('data : '+widget.teamId+eval.toString());
       final resBody = json.decode(response.body);
       print(resBody);
       if (response.statusCode==200){
