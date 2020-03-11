@@ -124,9 +124,11 @@ class _AllTeamsScreenState extends State<AllTeamsScreen> {
                                   ),
                                   onPressed: () {
                                     Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (ctx) => AssignScreen(),
-                                      ),
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      AssignScreen(allTeams[i]['id']),
+                                ),
+                                    
                                     );
                                   },
                                 ),

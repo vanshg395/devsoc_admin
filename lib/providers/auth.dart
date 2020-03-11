@@ -253,7 +253,7 @@ class Auth with ChangeNotifier {
 
   Future<void> logout() async {
     print(1);
-    String url = 'http://api-devsoc.herokuapp.com/auth//token/logout/';
+    String url = 'http://api-devsoc.herokuapp.com/auth/token/logout/';
     final response = await http.get(url, headers: {'Authorization': _token});
     print(response.statusCode);
     final prefs = await SharedPreferences.getInstance();
