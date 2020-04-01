@@ -152,7 +152,9 @@ class _AssignScreenState extends State<AssignScreen> {
                                   )
                                 : null,
                             onTap: () => toggleSelection(
-                                evaluators['data'][i]['user_id'], i),
+                              evaluators['data'][i]['user_id'],
+                              i,
+                            ),
                             // selected: isSelected,
                           ),
                         ),

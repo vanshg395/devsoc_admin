@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       value: Auth(),
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: ThemeData.light().copyWith(
             textTheme: TextTheme(
               headline1: TextStyle(
