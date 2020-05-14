@@ -1,16 +1,20 @@
-# devsoc_admin
+# DevSoc Admin App (HackScore)
 
-A new Flutter project.
+<img src="https://github.com/vanshg395/devsoc_admin/blob/master/hsjn.png" height="250" alt= "HackScore Logo">
 
-## Getting Started
+This app was made to make the evaluation of participants in CodeChef-VIT's flagship event, DEVSOC 2020. This app gives functionality at different hierarchial 
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+<img src="https://github.com/vanshg395/devsoc_admin/blob/master/1.jpg" height="300" alt= "one"> <img src="https://github.com/vanshg395/devsoc_admin/blob/master/2.PNG" height="300" alt= "one"> <img src="https://github.com/vanshg395/devsoc_admin/blob/master/3.PNG" height="300" alt= "one"> <img src="https://github.com/vanshg395/devsoc_admin/blob/master/4.PNG" height="300" alt= "one"> <img src="https://github.com/vanshg395/devsoc_admin/blob/master/5.PNG" height="300" alt= "one"> <img src="https://github.com/vanshg395/devsoc_admin/blob/master/6.jpg" height="300" alt= "one">
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Steps to Compile the App
+
+```
+1) git clone https://github.com/vanshg395/devsoc_admin.git
+2) cd devsoc_admin
+3) flutter pub get
+4) flutter run
+```
